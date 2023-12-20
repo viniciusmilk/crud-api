@@ -1,6 +1,6 @@
 const { randomUUID } = require('crypto')
 
-module.exports = class DBMemory {
+class DBMemory {
 
     // The datas will be sabe in a MAP data structure
     #product = new Map()
@@ -34,3 +34,7 @@ module.exports = class DBMemory {
         this.#product.delete(id)
     }
 }
+
+const dbInstantieted = new DBMemory()
+
+module.exports = dbInstantieted
