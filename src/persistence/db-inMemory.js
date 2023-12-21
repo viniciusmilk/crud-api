@@ -27,7 +27,11 @@ class DBMemory {
     }
 
     update(id, product) {
-        this.#product.set(id, product)
+        if (this.#product.has(id)) {
+            this.#product.set(id, product)   
+        } else {
+            return "PRODUTO NÃO ENCONTRADO!"
+        }
     }
 
     delete(id) {
