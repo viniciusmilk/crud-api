@@ -23,19 +23,22 @@ class DBMemory {
     }
 
     readOne(id) {
-        return this.#product.has(id) ? { id, ...this.#product.get(id) } : "Product not found"
+        return this.#product.has(id) ? { id, ...this.#product.get(id) } : "PRODUTO NÃO ENCONTRADO!"
     }
 
     update(id, product) {
         if (this.#product.has(id)) {
-            this.#product.set(id, product)   
+            this.#product.set(id, product)
         } else {
             return "PRODUTO NÃO ENCONTRADO!"
         }
     }
 
     delete(id) {
-        this.#product.delete(id)
+        if (this.#product.has(id))
+            this.#product.delete(id)
+        else
+            return "PRODUTO NÃO ENCONTRADO!"
     }
 }
 

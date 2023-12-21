@@ -1,9 +1,9 @@
 const fastify = require('fastify')({logger: true})
-const getProducts = require('./routes/getProducts');
-const getProduct = require('./routes/getProduct');
-const addProduct = require('./routes/addProduct');
-const updateProduct = require('./routes/updateProduct');
-const deleteProduct = require('./routes/deleteProduct');
+const getProducts = require('./routes/getProducts')
+const getProduct = require('./routes/getProduct')
+const addProduct = require('./routes/addProduct')
+const updateProduct = require('./routes/updateProduct')
+const deleteProduct = require('./routes/deleteProduct')
 
 fastify.get('/product', getProducts)
 fastify.get('/product/:id',getProduct)
