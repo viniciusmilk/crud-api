@@ -1,5 +1,5 @@
-const db = require('../persistence/db-inMemory')
+import db from "../persistence/db-inMemory.js"
 
-module.exports = async (request, reply) => {
+export default async function getProducts(request, reply) {
     return db.read()
 }

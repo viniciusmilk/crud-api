@@ -1,4 +1,4 @@
-const { randomUUID } = require('crypto')
+import { randomUUID } from "crypto"
 
 class DBMemory {
 
@@ -42,6 +42,6 @@ class DBMemory {
     }
 }
 
-const dbInstantieted = new DBMemory()
+const db = new DBMemory()
 
-module.exports = dbInstantieted
+export default db

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Marcos Leite <marcosveniciusdjmj2@gmail.com>",
+  "type": "module",
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",

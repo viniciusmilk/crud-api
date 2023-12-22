@@ -1,7 +1,7 @@
-const db = require('../persistence/db-inMemory')
+import db from "./../persistence/db-inMemory.js"
 
-module.exports = async (request, reply) => {
-    const { name, category, value } = request.body
-    db.create({ name, category, value })
-    return reply.status(201).send()
-  }
+export default async function addProduct(request, reply) {
+  const { name, category, amount, value } = request.body
+  db.create({ name, category, amount, value })
+  return reply.status(201).send()
+}

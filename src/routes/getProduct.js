@@ -1,6 +1,6 @@
-const db = require('../persistence/db-inMemory')
+import db from "../persistence/db-inMemory.js"
 
-module.exports = async (request, reply) => {
-    const productId = request.params.id
-    return db.readOne(productId)
-  }
+export default async function getProduct(request, reply) {
+  const productId = request.params.id
+  return db.readOne(productId)
+}
