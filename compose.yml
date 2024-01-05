@@ -1,0 +1,38 @@
+version: '2.23.3'
+
+services:
+  # Database Service
+  db:
+    image: mysql:8.0
+    container_name: database
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_DATABASE=$DB_NAME
+      - MYSQL_ROOT_PASSWORD=$ROOT_PASSWORD
+    # Caso queira acessa o banco de um SGBD instalado na sua maquina, descomente "ports e expose", para expor uma porta do container e conecta-lá com uma porta da sua marquina.
+    # ports:
+    #   - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+    # expose:
+    #   - $DB_DOCKER_PORT
+    volumes:
+      - data:/var/lib/mysql
+  # API Service
+  api:
+    build: .
+    depends_on:
+      - db
+    container_name: api
+    env_file: ./.env
+    ports:
+      - $API_LOCAL_PORT:$API_DOCKER_PORT
+    volumes:
+      - ./:/app
+    environment:
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$ROOT_PASSWORD
+      - DB_NAME=$DB_NAME
+
+volumes:
+  data:

@@ -9,13 +9,14 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.25.1",
     "husky": "^8.0.3",
-    "nodemon": "^3.0.2",
-    "fastify": "^4.25.1"
+    "mysql2": "^3.6.5",
+    "nodemon": "^3.0.2"
   }
 }
