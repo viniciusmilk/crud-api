@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 const fastify = Fastify({ logger: true })
+import 'dotenv/config'
 
 // Rotas da aplicação
 import getProducts from './routes/getProducts.js'
