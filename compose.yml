@@ -20,6 +20,7 @@ services:
   # API Service
   api:
     build: .
+    image: crud-api:latest
     depends_on:
       - db
     container_name: api
