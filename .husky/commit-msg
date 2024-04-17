@@ -1,11 +1,12 @@
 # Especifica que o script deve ser executado usando o interpretador de comandos sh.
+# Especifica que o script deve ser executado usando o interpretador de comandos sh.
 #!/usr/bin/env sh
 
-# xecuta o script husky.sh que está no mesmo diretório do script atual.
+# executa o script husky.sh que está no mesmo diretório do script atual.
 # O comando dirname é usado para obter o diretório do script atual.
 . "$(dirname -- "$0")/_/husky.sh"
 
-# xecuta o commitlint para verificar se a mensagem do commit segue as convenções.
+# executa o commitlint para verificar se a mensagem do commit segue as convenções.
 # O comando npx é usado para executar pacotes npm.
 # A opção --edit é usada para verificar a mensagem do commit no arquivo especificado.
 # ${1} é uma variável que contém o primeiro argumento passado para o script.
