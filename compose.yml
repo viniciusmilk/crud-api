@@ -1,39 +1,34 @@
-version: '3'
+version: '3' # Versão do Docker Compose
 
-services:
-  # Database Service
+services: # Define os serviços que serão criados
+  # Serviço do Banco de Dados
   db:
-    image: mysql:8.0
-    container_name: database
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MYSQL_DATABASE=$DB_NAME
-      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
-    # Caso queira acessa o banco de um SGBD instalado na sua maquina, descomente "ports e expose", para expor uma porta do container e conecta-lá com uma porta da sua marquina.
-    # ports:
-    #   - $DB_PORT:$DB_PORT
-    # expose:
-    #   - $DB_PORT
-    volumes:
-      - data:/var/lib/mysql
-  # API Service
+    image: mysql:8.0 # Imagem do Docker que será usada
+    container_name: database # Nome do container
+    restart: unless-stopped # Política de reinício do container
+    env_file: ./.env # Arquivo que contém as variáveis de ambiente
+    environment: # Variáveis de ambiente específicas do serviço
+      - MYSQL_DATABASE=$DB_NAME # Nome do banco de dados
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD # Senha do usuário root
+    volumes: # Volumes que serão montados no container
+      - data:/var/lib/mysql # Persistência dos dados do MySQL
+  # Serviço da API
   api:
-    build: .
-    image: crud-api:latest
-    depends_on:
-      - db
-    container_name: api
-    env_file: ./.env
-    ports:
-      - $API_PORT:$API_PORT
-    volumes:
-      - ./:/app
-    environment:
-      - DB_HOST=$DB_HOST
-      - DB_USER=$DB_USER
-      - DB_PASSWORD=$DB_PASSWORD
-      - DB_NAME=$DB_NAME
+    build: . # Diretório que contém o Dockerfile
+    image: crud-api:latest # Imagem do Docker que será construída
+    depends_on: # Dependências do serviço
+      - db # Este serviço depende do serviço db
+    container_name: api # Nome do container
+    env_file: ./.env # Arquivo que contém as variáveis de ambiente
+    ports: # Portas que serão expostas pelo serviço
+      - $API_PORT:$API_PORT # Porta da API
+    volumes: # Volumes que serão montados no container
+      - ./:/app # Código-fonte da API
+    environment: # Variáveis de ambiente específicas do serviço
+      - DB_HOST=$DB_HOST # Host do banco de dados
+      - DB_USER=$DB_USER # Usuário do banco de dados
+      - DB_PASSWORD=$DB_PASSWORD # Senha do banco de dados
+      - DB_NAME=$DB_NAME # Nome do banco de dados
 
-volumes:
-  data:
+volumes: # Define os volumes que serão usados pelos serviços
+  data: # Volume para persistência dos dados do MySQL

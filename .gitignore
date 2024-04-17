@@ -1,3 +1,7 @@
+# Este diretório contém pacotes de node que são instalados através do npm. Geralmente, não é uma boa prática versionar esses arquivos.
 node_modules
+
+# Este é um arquivo específico que você deseja que o Git ignore. Pode ser um arquivo de configuração local, um arquivo de teste, etc.
 routes.http
+# Este arquivo geralmente contém variáveis de ambiente sensíveis, como chaves de API, senhas, etc. É uma prática de segurança comum não versionar este arquivo.
 .env

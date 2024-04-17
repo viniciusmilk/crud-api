@@ -1,7 +1,20 @@
+# Ignora o diretório .husky, que é usado para ganchos git
 .husky
+
+# Ignora o diretório node_modules, que contém dependências do projeto
 node_modules
+
+# Ignora o diretório .git, que contém o histórico de versionamento do git
 .git
+
+# Ignora o arquivo .gitignore
 .gitignore
+
+# Ignora o arquivo de configuração do commitlint
 commitlint.config.js
+
+# Ignora o arquivo routes.http
 routes.http
+
+# Ignora o arquivo .env, que geralmente contém variáveis de ambiente sensíveis
 .env
