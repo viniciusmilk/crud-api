@@ -1,0 +1,35 @@
+
+# Buscar todos os produtos
+GET http://localhost:3000/product
+
+###
+# Buscar um produto pelo id
+GET http://localhost:3000/product/produc_id
+
+###
+# Adicionar um produto
+POST http://localhost:3000/product
+Content-Type: application/json
+
+{
+    "name": "coca-cola",
+    "category": "comida",
+    "amount": 100,
+    "value": 2.99
+}
+
+###
+# Atualizar um produto
+PUT http://localhost:3000/product/produc_id
+Content-Type: application/json
+
+{
+    "name": "coca-cola",
+    "category": "bebida",
+    "amount": 100,
+    "value": 9.99
+}
+
+###
+# Deletar um produto
+DELETE http://localhost:3000/product/produc_id
