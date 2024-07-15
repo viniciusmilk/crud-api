@@ -15,7 +15,7 @@ services: # Define os serviços que serão criados
   # Serviço da API
   api:
     build: . # Diretório que contém o Dockerfile
-    image: crud-api:latest # Imagem do Docker que será construída
+    image: viniciusmilk/crud-api:latest # Imagem do DockerHub que será baixada
     depends_on: # Dependências do serviço
       - db # Este serviço depende do serviço db
     container_name: api # Nome do container
@@ -24,11 +24,13 @@ services: # Define os serviços que serão criados
       - $API_PORT:$API_PORT # Porta da API
     volumes: # Volumes que serão montados no container
       - ./:/app # Código-fonte da API
+      - /app/node_modules
     environment: # Variáveis de ambiente específicas do serviço
       - DB_HOST=$DB_HOST # Host do banco de dados
       - DB_USER=$DB_USER # Usuário do banco de dados
       - DB_PASSWORD=$DB_PASSWORD # Senha do banco de dados
       - DB_NAME=$DB_NAME # Nome do banco de dados
+
 
 volumes: # Define os volumes que serão usados pelos serviços
   data: # Volume para persistência dos dados do MySQL

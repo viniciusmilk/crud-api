@@ -1,3 +1,4 @@
+
 // Importando o módulo crypto do Node.js para gerar UUIDs aleatórios
 import { randomUUID } from "crypto"
 
@@ -62,7 +63,7 @@ async function dbCreate(data) {
  */
 async function dbRead() {
     // Executando a query SQL para selecionar todos os produtos da tabela
-    return pool.promise().execute(`SELECT * FROM ${process.env.DB_TABLE_NAME};`,)
+    return pool.promise().execute(`SELECT * FROM Produto;`,)
         .then(([rows, fields]) => {
             if (rows.length === 0) {
                 // Se não há produtos, retorna uma mensagem de erro
@@ -91,7 +92,7 @@ async function dbRead() {
 async function dbReadOne(id) {
 
     // Executa a consulta SQL para buscar o produto pelo ID.
-    return pool.promise().execute(`SELECT * FROM ${process.env.DB_TABLE_NAME} WHERE id=?;`, [id])
+    return pool.promise().execute(`SELECT * FROM Produto WHERE id=?;`, [id])
         .then(([rows, fields]) => {
             // Se não houver produtos com o ID fornecido, retorna um erro.
             if (rows.length === 0) {
@@ -120,14 +121,14 @@ async function dbReadOne(id) {
 async function dbUpdate(id, product) {
 
     // Primeiro, verifica se o produto com o ID fornecido existe.
-    return pool.promise().execute(`SELECT id FROM ${process.env.DB_TABLE_NAME} WHERE id=?;`, [id])
+    return pool.promise().execute(`SELECT id FROM Produto WHERE id=?;`, [id])
         .then(([rows, fields]) => {
             // Se não houver produtos com o ID fornecido, retorna um erro.
             if (rows.length === 0) {
                 return { erro: "PRODUTO NÃO ENCONTRADO!" }
             } else {
                 // Caso contrário, executa a consulta SQL para atualizar o produto.
-                return pool.promise().execute(`UPDATE ${process.env.DB_TABLE_NAME} SET name=?, category=?, amount=?, value=? WHERE id=?;`, [product.name, product.category, product.amount, product.value, id])
+                return pool.promise().execute(`UPDATE Produto SET name=?, category=?, amount=?, value=? WHERE id=?;`, [product.name, product.category, product.amount, product.value, id])
                     .then(() => {
                         // Se a atualização for bem-sucedida, retorna uma mensagem de sucesso.
                         return { success: "PRODUTO ATUALIZADO!" }
@@ -160,14 +161,14 @@ async function dbUpdate(id, product) {
 async function dbDelete(id) {
 
     // Primeiro, tentamos encontrar o registro com o ID fornecido.
-    return pool.promise().execute(`SELECT id FROM ${process.env.DB_TABLE_NAME} WHERE id=?;`, [id])
+    return pool.promise().execute(`SELECT id FROM Produto WHERE id=?;`, [id])
         .then(([rows, fields]) => {
             // Se o registro não for encontrado, retornamos um erro.
             if (rows.length === 0) {
                 return { erro: "PRODUTO NÃO ENCONTRADO!" }
             } else {
                 // Se o registro for encontrado, tentamos deletá-lo.
-                return pool.promise().execute(`DELETE FROM ${process.env.DB_TABLE_NAME} WHERE id=?;`, [id])
+                return pool.promise().execute(`DELETE FROM Produto WHERE id=?;`, [id])
                     .then(() => {
                         // Se a deleção for bem-sucedida, retornamos uma mensagem de sucesso.
                         return { success: "PRODUTO DELETADO!" }
